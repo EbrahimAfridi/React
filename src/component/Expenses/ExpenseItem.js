@@ -1,7 +1,8 @@
+import React from 'react'
 import './ExpenseItem.css'
 import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
-
+// Stateless Component || Presentational Component || Dumb Component
 const ExpenseItem = (props) => {
     return (
         <Card className="expense-item">
@@ -12,7 +13,7 @@ const ExpenseItem = (props) => {
                     ${props.amount}
                 </div>
             </div>
-        </Card>
+        </Card>     
     );
 }
 
