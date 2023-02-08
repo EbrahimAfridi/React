@@ -23,13 +23,15 @@ const ExpenseForm = (props) => {
     const submitHandler = (event) => {
         event.preventDefault();
 
+        // This Obj expData is created to store the info added in input so tht we can use it to store in exp. tracker
         const expenseData = {
             title: enteredTitle,
-            amount: enteredAmount,
-            date: new Date(enteredDate)
-        };
+            amount: +enteredAmount,
+            date: new Date(enteredDate),
+          };
 
         props.onSaveExpenseData(expenseData);
+        // Doing this to empty the input section after submition 
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
@@ -40,20 +42,37 @@ const ExpenseForm = (props) => {
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
-                    <input type="text" onChange={titleChangeHandler} value={enteredTitle} />
+                    <input 
+                        type="text" 
+                        onChange={titleChangeHandler} 
+                        value={enteredTitle} // Sets initail value ex: placeholder enteredTitle is set to emptyString 
+                    />
                 </div>
                 <div className="new-expense__control">
                     <label>Amount</label>
-                    <input type="number" onChange={amountChangeHandler}  value={enteredAmount} min='0.01' step='0.01'/>
+                    <input 
+                        type="number"
+                        onChange={amountChangeHandler}  
+                        value={enteredAmount} 
+                        min='0.01' step='0.01'
+                    />
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type="date"  onChange={dateChangeHandler}  value={enteredDate} min='2019-1-1' max='2020-12-31'/>
+                    <input 
+                        type="date"  
+                        onChange={dateChangeHandler}  
+                        value={enteredDate} 
+                        min='2019-1-1' max='2020-12-31'
+                    />
                 </div>
             </div>
+
             <div className="new-expense__action">
-                <button type='submit'>Add Expense</button>
+                <button type="button" onClick={props.onCancel}>Cancel</button>
+                <button type='submit'>  Add Expense </button>
             </div>
+
         </form>
     );
 };
